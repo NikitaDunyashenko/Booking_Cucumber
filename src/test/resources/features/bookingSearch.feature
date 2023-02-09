@@ -1,9 +1,16 @@
 Feature: Booking search test
 
-  Scenario: Search for the hotel and validate the rating
+  Background:
     Given I am at Booking.com page
-    When I set 'Hilton Head Island' in the search bar
-    And I click 'Hilton Head Island' in the dropdown menu
+
+  Scenario Outline: Search for the hotel and validate the rating
+    When I set "<searchValue>" in the search bar
+    And I click "<searchValue>" in the dropdown menu
     And I click the search button
-    Then 'The Westin Hilton Head Island Resort & Spa'  should be present
-    Then The hotel should have score '8.0'
+    Then "<expectedResult>"  should be present under index <index>
+    Then The hotel under index <index> should have score "<hotelScore>"
+
+    Examples:
+    |searchValue|expectedResult|hotelScore|index|
+    |Hilton Head Island|The Westin Hilton Head Island Resort & Spa|8.0|1|
+    |Hilton Head Island|Grand Hilton Head Inn, Ascend Hotel Collection|7.3|2|

@@ -55,16 +55,16 @@ public class SearchSteps {
         searchPage.clickSearchButton();
     }
 
-    @Then("{string}  should be present")
-    public void theWestinHiltonHeadIslandResortSpaShouldBePresent(String value) {
-        String hotelName = resultsPage.getHotelNameByIndex(1);
+    @Then("{string}  should be present under index {int}")
+    public void theWestinHiltonHeadIslandResortSpaShouldBePresent(String value, int index) {
+        String hotelName = resultsPage.getHotelNameByIndex(index);
         Assert.assertTrue(hotelName.equals(value));
     }
 
 
-    @Then("The hotel should have score {string}")
-    public void theHotelShouldHaveScore(String score) {
-        String hotelScore = resultsPage.getScoreOfTheHotelByIndex(1);
+    @Then("The hotel under index {int} should have score {string}")
+    public void theHotelShouldHaveScore(int index, String score) {
+        String hotelScore = resultsPage.getScoreOfTheHotelByIndex(index);
         Assert.assertTrue(hotelScore.equals(score));
     }
 }
